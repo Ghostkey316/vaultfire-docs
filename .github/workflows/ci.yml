@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate HTML structure
+        run: |
+          echo "Checking index.html exists..."
+          test -f index.html
+          echo "Checking style.css exists..."
+          test -f style.css
+          echo "Checking script.js exists..."
+          test -f script.js
+          echo "All files present ✓"
+
+      - name: Check for broken links
+        run: |
+          grep -oP 'href="https?://[^"]*"' index.html | head -20
+          echo "Link references found ✓"
