@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vaultfire Protocol — The Trust Standard for AI Agents</title>
+  <meta name="description" content="On-chain identity, reputation, and economic accountability for AI agents. Deployed on Base, Avalanche, Arbitrum, and Polygon.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Prism.js for syntax highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+
+  <!-- Ethers.js for live contract calls -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Vaultfire home">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M16 2L4 10v12l12 8 12-8V10L16 2z" stroke="#FF6B35" stroke-width="2.5" fill="none"/>
+          <path d="M16 8l-6 4v8l6 4 6-4v-8l-6-4z" fill="#FF6B35" opacity="0.2"/>
+          <path d="M16 8l-6 4v8l6 4 6-4v-8l-6-4z" stroke="#FF6B35" stroke-width="1.5" fill="none"/>
+          <circle cx="16" cy="16" r="3" fill="#FF6B35"/>
+        </svg>
+        <span>VAULTFIRE</span>
+      </a>
+      <div class="nav-links">
+        <a href="#quickstart">Quickstart</a>
+        <a href="#frameworks">Frameworks</a>
+        <a href="#trust">How It Works</a>
+        <a href="#contracts">Contracts</a>
+        <a href="#checker">Trust Checker</a>
+        <a href="https://github.com/Ghostkey316/" target="_blank" rel="noopener" class="nav-github">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+      </div>
+      <button class="nav-mobile-toggle" aria-label="Toggle menu" id="mobileToggle">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div class="nav-mobile" id="mobileMenu">
+      <a href="#quickstart">Quickstart</a>
+      <a href="#frameworks">Frameworks</a>
+      <a href="#trust">How It Works</a>
+      <a href="#contracts">Contracts</a>
+      <a href="#checker">Trust Checker</a>
+      <a href="https://github.com/Ghostkey316/" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="container">
+      <div class="hero-badge">On-chain Trust Protocol</div>
+      <h1 class="hero-title"><span class="text-orange">VAULTFIRE</span></h1>
+      <p class="hero-tagline">The Trust Standard for AI Agents</p>
+      <p class="hero-sub">On-chain identity, reputation, and economic accountability.<br>Deployed on <strong>Base</strong> · <strong>Avalanche</strong> · <strong>Arbitrum</strong> · <strong>Polygon</strong>.</p>
+      <div class="hero-ctas">
+        <a href="#quickstart" class="btn btn-primary">Get Started</a>
+        <a href="https://github.com/Ghostkey316/" target="_blank" rel="noopener" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right:8px"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat">
+          <span class="stat-number">63</span>
+          <span class="stat-label">Smart Contracts</span>
+          <span class="stat-sub">across 4 chains</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">11</span>
+          <span class="stat-label">NPM Packages</span>
+          <span class="stat-sub">ready to install</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">4</span>
+          <span class="stat-label">Mainnet Chains</span>
+          <span class="stat-sub">live today</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">25+</span>
+          <span class="stat-label">GitHub Repos</span>
+          <span class="stat-sub">open source</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quickstart -->
+  <section class="section" id="quickstart">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Quickstart</span>
+        <h2>Get Started in 60 Seconds</h2>
+      </div>
+      <div class="quickstart-steps">
+        <div class="qs-step">
+          <div class="qs-step-num">1</div>
+          <div class="qs-step-content">
+            <h3>Install</h3>
+            <pre class="code-block"><code class="language-bash">npm install @vaultfire/langchain</code></pre>
+          </div>
+        </div>
+        <div class="qs-connector"></div>
+        <div class="qs-step">
+          <div class="qs-step-num">2</div>
+          <div class="qs-step-content">
+            <h3>Import</h3>
+            <pre class="code-block"><code class="language-typescript">import { createVaultfireTools } from '@vaultfire/langchain';</code></pre>
+          </div>
+        </div>
+        <div class="qs-connector"></div>
+        <div class="qs-step">
+          <div class="qs-step-num">3</div>
+          <div class="qs-step-content">
+            <h3>Use</h3>
+            <pre class="code-block"><code class="language-typescript">const tools = createVaultfireTools({ chain: 'base' });</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Framework Picker -->
+  <section class="section section-alt" id="frameworks">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Integrations</span>
+        <h2>Choose Your Framework</h2>
+      </div>
+      <div class="fw-tabs" role="tablist">
+        <button class="fw-tab active" role="tab" aria-selected="true" data-fw="langchain">LangChain</button>
+        <button class="fw-tab" role="tab" aria-selected="false" data-fw="mcp">MCP</button>
+        <button class="fw-tab" role="tab" aria-selected="false" data-fw="crewai">CrewAI</button>
+        <button class="fw-tab" role="tab" aria-selected="false" data-fw="openai">OpenAI SDK</button>
+        <button class="fw-tab" role="tab" aria-selected="false" data-fw="vercel">Vercel AI</button>
+        <button class="fw-tab" role="tab" aria-selected="false" data-fw="direct">Direct SDK</button>
+      </div>
+      <div class="fw-panels">
+        <div class="fw-panel active" data-panel="langchain">
+          <div class="fw-panel-header">
+            <h3>LangChain / LangGraph</h3>
+            <code class="pkg-name">@vaultfire/langchain</code>
+          </div>
+          <pre class="code-block"><code class="language-typescript">import { createVaultfireTools } from '@vaultfire/langchain';
+
+const tools = createVaultfireTools({ chain: 'base' });
+
+// Pass to createReactAgent, AgentExecutor, etc.</code></pre>
+        </div>
+        <div class="fw-panel" data-panel="mcp">
+          <div class="fw-panel-header">
+            <h3>MCP (Claude, Copilot, Cursor)</h3>
+            <code class="pkg-name">@vaultfire/mcp-server</code>
+          </div>
+          <pre class="code-block"><code class="language-json">{
+  "mcpServers": {
+    "vaultfire": {
+      "command": "npx",
+      "args": ["@vaultfire/mcp-server"]
+    }
+  }
+}</code></pre>
+        </div>
+        <div class="fw-panel" data-panel="crewai">
+          <div class="fw-panel-header">
+            <h3>CrewAI</h3>
+            <code class="pkg-name">vaultfire-crewai</code>
+          </div>
+          <pre class="code-block"><code class="language-python">from vaultfire_crewai import vaultfire_verify_agent
+
+agent = Agent(tools=[vaultfire_verify_agent])</code></pre>
+        </div>
+        <div class="fw-panel" data-panel="openai">
+          <div class="fw-panel-header">
+            <h3>OpenAI Agents SDK</h3>
+            <code class="pkg-name">@vaultfire/openai-agents</code>
+          </div>
+          <pre class="code-block"><code class="language-typescript">import { createVaultfireTools } from '@vaultfire/openai-agents';
+
+const agent = new Agent({ tools: createVaultfireTools() });</code></pre>
+        </div>
+        <div class="fw-panel" data-panel="vercel">
+          <div class="fw-panel-header">
+            <h3>Vercel AI SDK</h3>
+            <code class="pkg-name">@vaultfire/vercel-ai</code>
+          </div>
+          <pre class="code-block"><code class="language-typescript">import { createVaultfireTools } from '@vaultfire/vercel-ai';
+
+const result = await generateText({ tools: createVaultfireTools() });</code></pre>
+        </div>
+        <div class="fw-panel" data-panel="direct">
+          <div class="fw-panel-header">
+            <h3>Direct SDK</h3>
+            <code class="pkg-name">@vaultfire/agent-sdk</code>
+          </div>
+          <pre class="code-block"><code class="language-typescript">import { VaultfireClient } from '@vaultfire/agent-sdk';
+
+const client = new VaultfireClient({ chain: 'base' });</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Trust Works -->
+  <section class="section" id="trust">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Architecture</span>
+        <h2>How Trust Works</h2>
+      </div>
+      <div class="trust-flow">
+        <div class="trust-step">
+          <div class="trust-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+          </div>
+          <h3>Register</h3>
+          <p>Agent gets on-chain identity (ERC-8004)</p>
+        </div>
+        <div class="trust-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="trust-step">
+          <div class="trust-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Bond</h3>
+          <p>Stake value as commitment (AI Partnership Bonds)</p>
+        </div>
+        <div class="trust-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="trust-step">
+          <div class="trust-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3>Verify</h3>
+          <p>Any agent can check trust on-chain</p>
+        </div>
+        <div class="trust-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="trust-step">
+          <div class="trust-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3>Score</h3>
+          <p>Street Cred: 0–95 composite score</p>
+        </div>
+      </div>
+
+      <!-- Street Cred Breakdown -->
+      <div class="cred-section">
+        <h3>Street Cred Breakdown</h3>
+        <div class="cred-bars">
+          <div class="cred-item">
+            <div class="cred-label"><span>Identity</span><span>30 pts</span></div>
+            <div class="cred-bar"><div class="cred-fill" style="width:31.6%"></div></div>
+          </div>
+          <div class="cred-item">
+            <div class="cred-label"><span>Has Bond</span><span>25 pts</span></div>
+            <div class="cred-bar"><div class="cred-fill" style="width:26.3%"></div></div>
+          </div>
+          <div class="cred-item">
+            <div class="cred-label"><span>Active Bond</span><span>15 pts</span></div>
+            <div class="cred-bar"><div class="cred-fill" style="width:15.8%"></div></div>
+          </div>
+          <div class="cred-item">
+            <div class="cred-label"><span>Bond Tier</span><span>20 pts</span></div>
+            <div class="cred-bar"><div class="cred-fill" style="width:21.1%"></div></div>
+          </div>
+          <div class="cred-item">
+            <div class="cred-label"><span>Multiple Bonds</span><span>5 pts</span></div>
+            <div class="cred-bar"><div class="cred-fill" style="width:5.3%"></div></div>
+          </div>
+        </div>
+        <div class="tier-badges">
+          <div class="tier bronze">
+            <span class="tier-icon">🥉</span>
+            <span class="tier-name">Bronze</span>
+            <span class="tier-req">20+</span>
+          </div>
+          <div class="tier silver">
+            <span class="tier-icon">🥈</span>
+            <span class="tier-name">Silver</span>
+            <span class="tier-req">40+</span>
+          </div>
+          <div class="tier gold">
+            <span class="tier-icon">🥇</span>
+            <span class="tier-name">Gold</span>
+            <span class="tier-req">60+</span>
+          </div>
+          <div class="tier platinum">
+            <span class="tier-icon">💎</span>
+            <span class="tier-name">Platinum</span>
+            <span class="tier-req">80+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Bonds > Scores -->
+  <section class="section section-alt" id="bonds">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Philosophy</span>
+        <h2>Why Bonds &gt; Scores</h2>
+      </div>
+      <div class="comparison-table-wrap">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th class="highlight-col">Vaultfire Bonds</th>
+              <th>Trust Scores</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Skin in the game</td>
+              <td class="highlight-col"><span class="check">✓</span> Real economic stake</td>
+              <td><span class="cross">✗</span> None</td>
+            </tr>
+            <tr>
+              <td>Manipulation resistant</td>
+              <td class="highlight-col"><span class="check">✓</span> Economic cost to fake</td>
+              <td><span class="cross">✗</span> Easy to game</td>
+            </tr>
+            <tr>
+              <td>Verifiable</td>
+              <td class="highlight-col"><span class="check">✓</span> On-chain, trustless</td>
+              <td><span class="cross">✗</span> Centralized API</td>
+            </tr>
+            <tr>
+              <td>Cross-chain</td>
+              <td class="highlight-col"><span class="check">✓</span> 4 chains, day one</td>
+              <td><span class="cross">✗</span> Single provider</td>
+            </tr>
+            <tr>
+              <td>Accountability</td>
+              <td class="highlight-col"><span class="check">✓</span> Bond at risk on failure</td>
+              <td><span class="cross">✗</span> Score drops</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Deployed Contracts -->
+  <section class="section" id="contracts">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Infrastructure</span>
+        <h2>Deployed Contracts</h2>
+        <p class="section-desc">63 smart contracts across 4 mainnet chains. All verified and open source.</p>
+      </div>
+      <div class="chain-tabs" role="tablist">
+        <button class="chain-tab active" role="tab" aria-selected="true" data-chain="base">Base <span class="chain-id">8453</span></button>
+        <button class="chain-tab" role="tab" aria-selected="false" data-chain="avalanche">Avalanche <span class="chain-id">43114</span></button>
+        <button class="chain-tab" role="tab" aria-selected="false" data-chain="arbitrum">Arbitrum <span class="chain-id">42161</span></button>
+        <button class="chain-tab" role="tab" aria-selected="false" data-chain="polygon">Polygon <span class="chain-id">137</span></button>
+      </div>
+      <div class="chain-panels">
+        <!-- Base -->
+        <div class="chain-panel active" data-cpanel="base">
+          <div class="chain-panel-badge">Primary Hub</div>
+          <div class="contract-list">
+            <div class="contract-row">
+              <span class="contract-name">Identity</span>
+              <a href="https://basescan.org/address/0x35978DB675576598F0781dA2133E94cdCf4858bC" target="_blank" rel="noopener" class="contract-addr">0x35978DB675576598F0781dA2133E94cdCf4858bC</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">Partnership</span>
+              <a href="https://basescan.org/address/0xC574CF2a09B0B470933f0c6a3ef422e3fb25b4b4" target="_blank" rel="noopener" class="contract-addr">0xC574CF2a09B0B470933f0c6a3ef422e3fb25b4b4</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">Accountability</span>
+              <a href="https://basescan.org/address/0xf92baef9523BC264144F80F9c31D5c5C017c6Da8" target="_blank" rel="noopener" class="contract-addr">0xf92baef9523BC264144F80F9c31D5c5C017c6Da8</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">Reputation</span>
+              <a href="https://basescan.org/address/0xdB54B8925664816187646174bdBb6Ac658A55a5F" target="_blank" rel="noopener" class="contract-addr">0xdB54B8925664816187646174bdBb6Ac658A55a5F</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">Bridge</span>
+              <a href="https://basescan.org/address/0x94F54c849692Cc64C35468D0A87D2Ab9D7Cb6Fb2" target="_blank" rel="noopener" class="contract-addr">0x94F54c849692Cc64C35468D0A87D2Ab9D7Cb6Fb2</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">VNS</span>
+              <a href="https://basescan.org/address/0x1437c4081233A4f0B6907dDf5374Ed610cBD6B25" target="_blank" rel="noopener" class="contract-addr">0x1437c4081233A4f0B6907dDf5374Ed610cBD6B25</a>
+            </div>
+          </div>
+        </div>
+        <!-- Avalanche -->
+        <div class="chain-panel" data-cpanel="avalanche">
+          <div class="contract-list">
+            <div class="contract-row">
+              <span class="contract-name">Identity</span>
+              <a href="https://snowtrace.io/address/0x57741F4116925341d8f7Eb3F381d98e07C73B4a3" target="_blank" rel="noopener" class="contract-addr">0x57741F4116925341d8f7Eb3F381d98e07C73B4a3</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">Partnership</span>
+              <a href="https://snowtrace.io/address/0xea6B504827a746d781f867441364C7A732AA4b07" target="_blank" rel="noopener" class="contract-addr">0xea6B504827a746d781f867441364C7A732AA4b07</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">Accountability</span>
+              <a href="https://snowtrace.io/address/0xaeFEa985E0C52f92F73606657B9dA60db2798af3" target="_blank" rel="noopener" class="contract-addr">0xaeFEa985E0C52f92F73606657B9dA60db2798af3</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">Reputation</span>
+              <a href="https://snowtrace.io/address/0x11C267C8A75B13A4D95357CEF6027c42F8e7bA24" target="_blank" rel="noopener" class="contract-addr">0x11C267C8A75B13A4D95357CEF6027c42F8e7bA24</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">Bridge</span>
+              <a href="https://snowtrace.io/address/0x0dF0523aF5aF2Aef180dB052b669Bea97fee3d31" target="_blank" rel="noopener" class="contract-addr">0x0dF0523aF5aF2Aef180dB052b669Bea97fee3d31</a>
+            </div>
+          </div>
+        </div>
+        <!-- Arbitrum -->
+        <div class="chain-panel" data-cpanel="arbitrum">
+          <div class="contract-list">
+            <div class="contract-row">
+              <span class="contract-name">Identity</span>
+              <a href="https://arbiscan.io/address/0x6298c62FDA57276DC60de9E716fbBAc23d06D5F1" target="_blank" rel="noopener" class="contract-addr">0x6298c62FDA57276DC60de9E716fbBAc23d06D5F1</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">Partnership</span>
+              <a href="https://arbiscan.io/address/0x0E777878C5b5248E1b52b09Ab5cdEb2eD6e7Da58" target="_blank" rel="noopener" class="contract-addr">0x0E777878C5b5248E1b52b09Ab5cdEb2eD6e7Da58</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">Accountability</span>
+              <a href="https://arbiscan.io/address/0xfDdd2B1597c87577543176AB7f49D587876563D2" target="_blank" rel="noopener" class="contract-addr">0xfDdd2B1597c87577543176AB7f49D587876563D2</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">Reputation</span>
+              <a href="https://arbiscan.io/address/0x8aceF0Bc7e07B2dE35E9069663953f41B5422218" target="_blank" rel="noopener" class="contract-addr">0x8aceF0Bc7e07B2dE35E9069663953f41B5422218</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">Bridge</span>
+              <a href="https://arbiscan.io/address/0xe2aDfe84703dd6B5e421c306861Af18F962fDA91" target="_blank" rel="noopener" class="contract-addr">0xe2aDfe84703dd6B5e421c306861Af18F962fDA91</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">VNS</span>
+              <a href="https://arbiscan.io/address/0x247F31bB2b5a0d28E68bf24865AA242965FF99cd" target="_blank" rel="noopener" class="contract-addr">0x247F31bB2b5a0d28E68bf24865AA242965FF99cd</a>
+            </div>
+          </div>
+        </div>
+        <!-- Polygon -->
+        <div class="chain-panel" data-cpanel="polygon">
+          <div class="contract-list">
+            <div class="contract-row">
+              <span class="contract-name">Identity</span>
+              <a href="https://polygonscan.com/address/0x6298c62FDA57276DC60de9E716fbBAc23d06D5F1" target="_blank" rel="noopener" class="contract-addr">0x6298c62FDA57276DC60de9E716fbBAc23d06D5F1</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">Partnership</span>
+              <a href="https://polygonscan.com/address/0x0E777878C5b5248E1b52b09Ab5cdEb2eD6e7Da58" target="_blank" rel="noopener" class="contract-addr">0x0E777878C5b5248E1b52b09Ab5cdEb2eD6e7Da58</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">Accountability</span>
+              <a href="https://polygonscan.com/address/0xfDdd2B1597c87577543176AB7f49D587876563D2" target="_blank" rel="noopener" class="contract-addr">0xfDdd2B1597c87577543176AB7f49D587876563D2</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">Reputation</span>
+              <a href="https://polygonscan.com/address/0x8aceF0Bc7e07B2dE35E9069663953f41B5422218" target="_blank" rel="noopener" class="contract-addr">0x8aceF0Bc7e07B2dE35E9069663953f41B5422218</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">Bridge</span>
+              <a href="https://polygonscan.com/address/0xe2aDfe84703dd6B5e421c306861Af18F962fDA91" target="_blank" rel="noopener" class="contract-addr">0xe2aDfe84703dd6B5e421c306861Af18F962fDA91</a>
+            </div>
+            <div class="contract-row">
+              <span class="contract-name">VNS</span>
+              <a href="https://polygonscan.com/address/0x247F31bB2b5a0d28E68bf24865AA242965FF99cd" target="_blank" rel="noopener" class="contract-addr">0x247F31bB2b5a0d28E68bf24865AA242965FF99cd</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="deployer-note">Deployer: <a href="https://basescan.org/address/0xA054f831B562e729F8D268291EBde1B2EDcFb84F" target="_blank" rel="noopener" class="contract-addr">0xA054f831B562e729F8D268291EBde1B2EDcFb84F</a></p>
+    </div>
+  </section>
+
+  <!-- Full Ecosystem -->
+  <section class="section section-alt" id="ecosystem">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Ecosystem</span>
+        <h2>Full Package Ecosystem</h2>
+      </div>
+      <div class="eco-table-wrap">
+        <table class="eco-table">
+          <thead>
+            <tr>
+              <th>Package</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>@vaultfire/agent-sdk</code></td><td><span class="badge npm">npm</span></td><td>Core agent registration and bond SDK</td></tr>
+            <tr><td><code>@vaultfire/langchain</code></td><td><span class="badge npm">npm</span></td><td>LangChain/LangGraph integration</td></tr>
+            <tr><td><code>@vaultfire/mcp-server</code></td><td><span class="badge npm">npm</span></td><td>MCP server for Claude, Copilot, Cursor</td></tr>
+            <tr><td><code>@vaultfire/crewai</code></td><td><span class="badge pip">pip</span></td><td>CrewAI multi-agent trust tools</td></tr>
+            <tr><td><code>@vaultfire/openai-agents</code></td><td><span class="badge npm">npm</span></td><td>OpenAI Agents SDK integration</td></tr>
+            <tr><td><code>@vaultfire/vercel-ai</code></td><td><span class="badge npm">npm</span></td><td>Vercel AI SDK trust middleware</td></tr>
+            <tr><td><code>@vaultfire/a2a</code></td><td><span class="badge npm">npm</span></td><td>A2A Agent Card enrichment</td></tr>
+            <tr><td><code>@vaultfire/enterprise</code></td><td><span class="badge npm">npm</span></td><td>Enterprise IAM bridge (Okta/Azure AD)</td></tr>
+            <tr><td><code>@vaultfire/x402</code></td><td><span class="badge npm">npm</span></td><td>HTTP 402 payment channels</td></tr>
+            <tr><td><code>@vaultfire/xmtp</code></td><td><span class="badge npm">npm</span></td><td>XMTP agent messaging</td></tr>
+            <tr><td><code>@vaultfire/vns</code></td><td><span class="badge npm">npm</span></td><td>Vaultfire Name Service</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Checker -->
+  <section class="section" id="checker">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Interactive</span>
+        <h2>Trust Checker</h2>
+        <p class="section-desc">Check any agent's trust status by querying live on-chain data.</p>
+      </div>
+      <div class="checker-card">
+        <div class="checker-form">
+          <div class="input-group">
+            <label for="agentAddress">Agent Address</label>
+            <input type="text" id="agentAddress" placeholder="0x..." spellcheck="false" autocomplete="off">
+          </div>
+          <div class="input-group">
+            <label for="chainSelect">Chain</label>
+            <select id="chainSelect">
+              <option value="base">Base (8453)</option>
+              <option value="avalanche">Avalanche (43114)</option>
+              <option value="arbitrum">Arbitrum (42161)</option>
+              <option value="polygon">Polygon (137)</option>
+            </select>
+          </div>
+          <button class="btn btn-primary btn-check" id="checkTrustBtn">Check Trust</button>
+        </div>
+        <div class="checker-result" id="checkerResult">
+          <div class="checker-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.5"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <p>Enter an agent address to check its on-chain trust status</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="footer-logo text-orange">VAULTFIRE</span>
+          <p class="footer-mission">"Morals over metrics. Privacy over surveillance. Freedom over control."</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/Ghostkey316/" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.npmjs.com/search?q=%40vaultfire" target="_blank" rel="noopener">npm</a>
+          <a href="https://theloopbreaker.com" target="_blank" rel="noopener">theloopbreaker.com</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Built by <strong>Ghostkey316</strong> · MIT License · &copy; 2025</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
