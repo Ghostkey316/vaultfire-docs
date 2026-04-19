@@ -54,7 +54,7 @@ const tools = createVaultfireTools({ chain: 'base' });
 
 ## Deployed Contracts
 
-Vaultfire Protocol is deployed across **4 mainnet chains** with **63 smart contracts**.
+Vaultfire Protocol is deployed across **4 mainnet chains** with **103 smart contracts**.
 
 - **Base** (Chain ID: 8453) — Primary Hub
 - **Avalanche** (Chain ID: 43114)
