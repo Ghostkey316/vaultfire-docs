@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./brand/logo-full.png" alt="Vaultfire" width="420" />
+</p>
+
 <div align="center">
 
 > **⚠️ Alpha Software** — Vaultfire Protocol is in active development. Contracts are deployed on mainnet but APIs and SDK interfaces may change. Use in production at your own discretion.
